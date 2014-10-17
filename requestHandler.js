@@ -1,5 +1,11 @@
 function start(){
     console.log("Reqeust handler start was called");
+    
+    function sleep(millisecond){
+        var startTime = new Date().getTime();
+        while(new Date().getTime() < startTime + millisecond);
+    }
+    sleep(10000);
     return "Hello World";
 }
 
