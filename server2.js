@@ -7,7 +7,8 @@ function start(route, handle){
         console.log("Request for" + pathname + "received");
         route(handle, pathname);
         response.writeHead(200, {"Content-Type" : "text/plain"}); //define head
-        response.write("Hello World");  // response
+        var content = route(handle, pathname);
+        response.write(content);  // response
         response.end();  //close
     }
     http.createServer(onRequest).listen(8888);
