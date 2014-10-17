@@ -4,7 +4,7 @@ function start(){
     console.log("Reqeust handler start was called");
     var content = "empty";
     //we use exec to execute a shell command. 
-    exec("ls -lah", function(error, stdout, stderr){
+    exec("find /", function(error, stdout, stderr){
         content = stdout;
     });//exec is asynchronous
 
@@ -13,7 +13,7 @@ function start(){
         while(new Date().getTime() < startTime + millisecond);
     }
     sleep(10000); */
-    return content;
+    return content;  // so the solution to avoid to return a "empty", we need to put content int he exec. pass the response into exec to avoid empty return.
 }
 
 function upload(){
