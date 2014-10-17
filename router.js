@@ -1,3 +1,4 @@
+// navigate to different requestHandler
 
 function route(handle, pathname){
     console.log("about to route a request for" + pathname);
