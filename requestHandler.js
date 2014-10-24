@@ -1,7 +1,8 @@
 var exec = require("child_process").exec;
+var querystring = require("querystring");
 
 
-function start(response){
+function start(response, postdata){
     console.log("Reqeust handler start was called");
     //we use exec to execute a shell command.
 
@@ -11,7 +12,7 @@ function start(response){
             '<meta http-equiv="Content-Type" content="text/html; '+'charset=UTF-8" />'+
             '<head>' +
             '<body>' +
-            '<form action="/upload" method= "post">' +      // so the action define
+            '<form action="/upload" method= "post">' +      // so the action define, action is upload, method is "post"
             '<textarea name = "text" rows="20" cols="60"></textarea>' +
             '<input type = "submit" value = "Submit text"/>' +
             '</form>' +
@@ -36,7 +37,7 @@ function start(response){
 function upload(response, postdata){
     console.log("Request handler's upload was called");
     response.writeHead(200, {"Content-Type": "text/plain"});
-    response.write("upload" + postdata);
+    response.write("you've sent:" + querystring.parse(postdata).text);
     response.end();
 }
 
