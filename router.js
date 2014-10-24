@@ -1,12 +1,14 @@
 // navigate to different requestHandler
 
-function route(handle, pathname){
+function route(handle, pathname, response){
     console.log("about to route a request for" + pathname);
     if (typeof handle[pathname] === 'function'){
-       return handle[pathname]();
+       return handle[pathname](response);
     }else{
         console.log("No request handler found for" + pathname);
-        return "404 Not Found";   //request return some error information
+        response.writeHead(200, {"Content-Type": "text-plain"});
+        response.write("404 not found");
+        response.end();
     }
 }
 exports.route = route;

@@ -1,11 +1,12 @@
 var exec = require("child_process").exec;
 
-function start(){
+function start(response){
     console.log("Reqeust handler start was called");
-    var content = "empty";
     //we use exec to execute a shell command. 
     exec("ls -lah", function(error, stdout, stderr){
-        content = stdout;
+        response.writeHead(200, {"Content-Type":"text/plain"});
+        response.write(stdout);
+        response.end();
     });//exec is asynchronous
 
    /* function sleep(millisecond){
@@ -13,12 +14,13 @@ function start(){
         while(new Date().getTime() < startTime + millisecond);
     }
     sleep(10000); */
-    return content;
 }
 
-function upload(){
+function upload(response){
     console.log("Request handler's upload was called");
-    return "Hello World";
+    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.write("Hello upload");
+    response.end();
 }
 
 exports.start = start;
